@@ -140,9 +140,47 @@ void charCounting3() {
  * Exercise 1-11
  */
 
+#define IN 1
+#define OUT 0
+
+void charCounting4() {
+	int c, newWord, newChar, newLine, state;
+	newWord = newChar = 0;
+	newLine = 1;
+	state = OUT;
+	while ((c = getchar()) != EOF) {
+		newChar++;
+		if (c == '\n') newLine++;
+		if (c == ' ' || c == '\t' || c == '\n') state = OUT;
+		else if (state == OUT) {
+			newWord++;
+			state = IN;
+		}
+	}
+	printf("\n");
+	printf("Words: %d, Characters: %d, Lines: %d\n", newWord, newChar, newLine);
+}
+
 /*
  * Exercise 1-12
  */
+
+void charCounting5() {
+	int c, state, word;
+	state = OUT;
+	word = 0;
+	while ((c = getchar()) != EOF) {
+		if (c == ' ' || c == '\t' ||  c == '\n') state = OUT;
+		else if (state == OUT) {
+			word++;
+			putchar('\n');
+			state = IN;
+		}
+		putchar(c);
+	}
+	printf("\n");
+	printf("Word count: %d\n", word);
+}
 
 /*
  * Exercise 1-13
@@ -203,6 +241,8 @@ int main() {
 //	fileCopying2();
 //	charCounting1();
 //	charCounting2();
-	charCounting3();
+//	charCounting3();
+//	charCounting4();
+	charCounting5();
 	return 0;
 }
